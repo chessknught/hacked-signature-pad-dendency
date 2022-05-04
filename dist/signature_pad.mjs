@@ -151,9 +151,8 @@ SignaturePad.prototype.fromDataURL = function (dataUrl) {
   var _this = this;
 
   var image = new Image();
-  var ratio = window.devicePixelRatio || 1;
-  var width = this._canvas.width / ratio;
-  var height = this._canvas.height / ratio;
+  var width = this._canvas.width;
+  var height = this._canvas.height;
 
   this._reset();
   image.src = dataUrl;
@@ -181,27 +180,7 @@ SignaturePad.prototype.toDataURL = function (type) {
 SignaturePad.prototype.on = function () {
   this._handleMouseEvents();
   this._handleTouchEvents();
-
-  this.onResize();
 };
-
-SignaturePad.prototype.onResize = function(callback ) {
-  let elementWidth = this._canvas.width;
-  let _this = this;
-
-  setInterval(function(){
-    if (_this._canvas.width === elementWidth ) { return; }
-
-    elementWidth = _this._canvas.width;
-    _this.redraw();
-  }, 300);
-}
-
-SignaturePad.prototype.redraw = function() {
-  var tempData = structuredClone(this._data);
-  this.fromData(this._data);
-  this._data = tempData;
-}
 
 SignaturePad.prototype.off = function () {
   this._canvas.removeEventListener('mousedown', this._handleMouseDown);
