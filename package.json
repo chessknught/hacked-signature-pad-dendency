@@ -60,10 +60,5 @@
     "type": "git",
     "url": "git+https://github.com/szimek/signature_pad.git"
   },
-  "scripts": {
-    "build": "gulp",
-    "prepublish": "npm run build",
-    "watch": "gulp watch"
-  },
   "version": "1.6.0"
 }
